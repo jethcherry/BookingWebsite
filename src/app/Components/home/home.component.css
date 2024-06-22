@@ -1,0 +1,24 @@
+.home {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .slider {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  .slide {
+    width: 100%;
+    display: none;
+    animation: fade 1.5s;
+  }
+  
+  @keyframes fade {
+    from { opacity: .4; }
+    to { opacity: 1; }
+  }
+  
