@@ -1,10 +1,6 @@
 <div class="home" id="home">
-    <div class="slider">
-      <img class="slide" src="../../assets/images/1.avif" alt="Slide 1">
-      <img class="slide" src="../../assets/images/1.jpeg" alt="Slide 2">
-      <img class="slide" src="../../assets/images/2.avif" alt="Slide 3">
-      <img class="slide" src="../../assets/images/3.jpeg" alt="Slide 4">
-    </div>
-    <p>Welcome to our booking system.<br>Book your stay with us now!</p>
+  <div class="slider">
+    <img *ngFor="let slide of slides" class="slide" [src]="slide.src" [alt]="slide.alt">
   </div>
-  
+  <p>Welcome to our booking system.<br>Book your stay with us now!</p>
+</div>
