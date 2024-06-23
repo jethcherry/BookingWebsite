@@ -1,1 +1,15 @@
-<p>tours works!</p>
+<div class="tour-list">
+    <h2>Tours</h2>
+    <div *ngFor="let tour of tours" class="tour-item">
+      <img [src]="tour.imageUrl" alt="Tour Image">
+      <h3>{{ tour.name }}</h3>
+      <p>{{ tour.destination }}</p>
+      <p>{{ tour.description }}</p>
+      <p>{{ tour.price }}</p>
+      <button (click)="updateTour(tour)">Update Tour</button>
+      <button (click)="deleteTour(tour.id)">Delete Tour</button>
+    </div>
+  </div>
+  
+  <button (click)="addTour()">Add New Tour</button>
+  

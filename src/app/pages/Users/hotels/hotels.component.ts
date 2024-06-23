@@ -23,7 +23,7 @@ export class HotelsComponent implements OnInit {
   }
   addHotel(){
     const newHotel:Hotel = {
-        id: 0, // ID will be assigned by the service
+        id: 0, 
         name: 'New Hotel',
         location: 'New City, New Country',
         description: 'This is a new hotel description.',
