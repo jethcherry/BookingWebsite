@@ -1,1 +1,14 @@
-<p>hotels works!</p>
+<div class="hotel-list">
+    <h2>Hotels</h2>
+    <div *ngFor="let hotel of hotels" class="hotel-item">
+      <img [src]="hotel.imageUrl" alt="Hotel Image">
+      <h3>{{ hotel.name }}</h3>
+      <p>{{ hotel.location }}</p>
+      <p>{{ hotel.description }}</p>
+      <button (click)="updateHotel(hotel)">Update Hotel</button>
+      <button (click)="deleteHotel(hotel.id)">Delete Hotel</button>
+    </div>
+  </div>
+  
+  <button (click)="addHotel()">Add New Hotel</button>
+  

@@ -1,1 +1,35 @@
-<p>booking works!</p>
+<div class="booking-container">
+  <h2>Booking Details</h2>
+  <form (ngSubmit)="bookNow()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="booking.name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="booking.email">
+    </div>
+    <div class="form-group">
+      <label for="checkin">Check-in Date:</label>
+      <input type="date" id="checkin" name="checkin" [(ngModel)]="booking.checkin">
+    </div>
+    <div class="form-group">
+      <label for="checkout">Check-out Date:</label>
+      <input type="date" id="checkout" name="checkout" [(ngModel)]="booking.checkout">
+    </div>
+    <button type="submit">Book Now</button>
+  </form>
+</div>
+
+<div *ngIf="bookings.length > 0" class="bookings-list">
+  <h2>Bookings</h2>
+  <ul>
+    <li *ngFor="let booking of bookings">
+      <p>Name: {{ booking.name }}</p>
+      <p>Email: {{ booking.email }}</p>
+      <p>Check-in: {{ booking.checkin }}</p>
+      <p>Check-out: {{ booking.checkout }}</p>
+      <button (click)="cancelBooking(booking.id)">Cancel Booking</button>
+    </li>
+  </ul>
+</div>

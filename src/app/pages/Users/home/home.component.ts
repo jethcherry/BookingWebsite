@@ -5,37 +5,41 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit,OnDestroy{
+export class HomeComponent implements OnInit, OnDestroy {
+  images: string[] = [
+    '/assets/tours/greece.jpeg',
+    '/assets/tours/parisFrance.jpeg',
+    '/assets/tours/portugal.jpeg',
+    '/assets/tours/turkey.jpeg'
+  ];
 
-  images:string[] = [
-    '../../../assets/tours/greece.jpeg',
-    '../../../assets/tours/parisFrance.jpeg',
-    '../../../assets/tours/portugal.jpeg',
-    '../../../assets/tours/turkey.jpeg'
-  ]
-
-  currentImg: string=''
-  intervalId:any
+  currentImg: string = '';
+  intervalId: any;
 
   ngOnInit(): void {
-      this.startChangingImage()
+    this.startChangingImage();
   }
+
   ngOnDestroy(): void {
-      clearInterval(this.intervalId)
+    this.stopChangingImage();
   }
-  startChangingImage():void
-  {
-    let index = 0
-    this.currentImg = this.images[index]
+
+  startChangingImage(): void {
+    let index = 0;
+    this.currentImg = this.images[index];
+    this.intervalId = setInterval(() => {
+      index = (index + 1) % this.images.length;
+      this.currentImg = this.images[index];
+    }, 3000); 
   }
-  stopChangingImage():void
-  {
-    clearInterval(this.intervalId)
-  }  
 
-
+  stopChangingImage(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
 }
