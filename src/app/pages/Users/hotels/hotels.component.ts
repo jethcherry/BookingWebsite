@@ -26,6 +26,7 @@ export class HotelsComponent implements OnInit {
         id: 0, 
         name: 'New Hotel',
         location: 'New City, New Country',
+        price:'',
         description: 'This is a new hotel description.',
         imageUrl: 'assets/images/new-hotel.jpg'
     }

@@ -30,7 +30,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.validateInputs()) {
-      this.authService.login(this.username, this.password).subscribe(result => {
+      this.authService.loginUser(this.username, this.password).subscribe(result => {
         if (result) {
           alert('Login successful');
           if (result.role === 'admin') {

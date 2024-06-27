@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor() { }
 
-  login(username: string, password: string): Observable<{ role: string } | null> {
+  loginUser(username: string, password: string): Observable<{ role: string } | null> {
     const user = this.users.find(u => u.username === username && u.password === password);
     return of(user ? { role: user.role } : null);
   }
@@ -26,5 +26,18 @@ export class AuthService {
     }
     this.users.push({ username, password, role, email });
     return of(true);
+  }
+   private isLoggedIn = false
+
+  login(){
+    this.isLoggedIn = true; 
+  }
+  logout(){
+    this.isLoggedIn =false
+  }
+
+  showStatus(){
+    return this.isLoggedIn
+
   }
 }

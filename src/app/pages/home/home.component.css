@@ -1,0 +1,73 @@
+
+.container
+{
+  padding: 0;
+  font-weight: 500;
+}
+.container h1
+{
+ 
+  top: 100px;
+  font-size: 4vw;
+  font-weight: 500;
+  color: black;
+  text-align: center;
+  padding-top: 0%;
+}
+.searchbar
+{
+  background:#fff;
+  width: 70%;
+  margin: 30px auto;
+  padding: 6px 10px 6px 30px;
+  border-radius: 50px;
+
+}
+.searchbar form
+{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.searchbar form input
+{
+  display: block;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+.searchbar form button
+{
+  background: #ff5361;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+
+
+}
+.searchbar form button img
+{
+  width: 15px;
+  color: #fff;
+  margin-top: 7px;
+
+}
+.location-input{
+  flex: 1;
+}
+
+.searchbar form label
+{
+  font-weight: 600;
+
+}
+.sub-title
+{
+  margin: 50px 0 20px;
+  font-size: 2.2w;
+  font-weight: 500;
+
+}
