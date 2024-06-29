@@ -8,9 +8,10 @@ import { ContactusComponent } from './pages/Users/contactus/contactus.component'
 import { AboutusComponent } from './pages/Users/aboutus/aboutus.component';
 import { FaqsComponent } from './pages/Users/faqs/faqs.component';
 import { BookingFormComponent } from './pages/Users/booking/booking.component';
+import { AdminComponent } from './pages/Admin/admin/admin.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent},
+    { path: 'home', component: HomeComponent},
     {path:'login',component:LoginComponent},
     {path:'tours',component:ToursComponent},
     {path:'hotels',component:HotelsComponent},
@@ -18,6 +19,7 @@ export const routes: Routes = [
     {path:'contactus',component:ContactusComponent},
     {path:'aboutus',component:AboutusComponent},
     {path:'faqs',component:FaqsComponent},
-    {path:'bookings',component:BookingFormComponent}
+    {path:'bookings',component:BookingFormComponent},
+    {path:'admin',component:AdminComponent}
    
 ];

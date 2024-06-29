@@ -36,7 +36,7 @@ export class LoginComponent {
           if (result.role === 'admin') {
             this.router.navigate(['/admin']);
           } else {
-            this.router.navigate(['/user']);
+            this.router.navigate(['/home']);
           }
         } else {
           this.errorMessage = 'Invalid username or password';

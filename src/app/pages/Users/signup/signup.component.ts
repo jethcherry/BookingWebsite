@@ -7,21 +7,18 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css'
+  styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-
-
   username: string = '';
   email: string = '';
   password: string = '';
   role: string = 'user';
   errorMessage: string = '';
 
-  
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   private validatePassword(password: string): string {
     const minLength = 8;
@@ -29,7 +26,8 @@ export class SignupComponent {
     const hasLowerCase = /[a-z]/.test(password);
     const hasNumber = /[0-9]/.test(password);
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-    
+    const hasRepeatingChars = /(.)\1\1/.test(password); 
+
     if (!password) {
       return 'The input fields cannot be empty';
     }
@@ -47,6 +45,9 @@ export class SignupComponent {
     }
     if (!hasSpecialChar) {
       return 'Password must contain at least one special character.';
+    }
+    if (hasRepeatingChars) {
+      return 'Password must not contain repeating characters in sequence.';
     }
     return '';
   }
@@ -79,5 +80,4 @@ export class SignupComponent {
       alert(this.errorMessage);
     }
   }
-
 }

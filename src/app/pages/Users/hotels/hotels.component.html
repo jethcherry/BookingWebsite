@@ -5,7 +5,8 @@
       <h3>{{ hotel.name }}</h3>
       <p>{{ hotel.location }}</p>
       <p>{{ hotel.description }}</p>
-      <button (click)="bookNow()">Book Now</button>
+      <p>{{hotel.price | currency:'USD'}}</p>
+      <button (click)="bookNow(hotel)">Book Now</button>
       
     </div>
   </div>

@@ -1,1 +1,29 @@
 <p>hotels works!</p>
+<div>
+    <h2>Manage Hotels</h2>
+    <form [formGroup]="hotelForm" (ngSubmit)="onSubmit()">
+      <div formArrayName="hotels">
+        <div formGroupName="0">
+          <label>ID:</label>
+          <input type="number" formControlName="id">
+          <br>
+          <label>Name:</label>
+          <input type="text" formControlName="name">
+          <br>
+          <label>Location:</label>
+          <input type="text" formControlName="location">
+          <br>
+          <label>Price:</label>
+          <input type="text" formControlName="price">
+          <br>
+          <label>Description:</label>
+          <textarea formControlName="description"></textarea>
+          <br>
+          <label>Image URL:</label>
+          <input type="text" formControlName="imageUrl">
+          <br>
+        </div>
+      </div>
+      <button type="submit">Add Hotel</button>
+    </form>
+  </div>

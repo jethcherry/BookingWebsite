@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Hotel } from '../Models/Hotels';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -76,32 +77,48 @@ export class HotelsService {
   ];
 
 
+ 
   constructor() { }
-  addHotels(hotel:Hotel):void{
+
+  
+  addHotel(hotel: Hotel): Observable<void> {
     hotel.id = this.generateId();
-    this.hotels.push(hotel)
+    this.hotels.push(hotel);
+    return of(undefined); 
   }
-  getHotels():Hotel[]{
-    return this.hotels;
+
+  
+  getHotels(): Observable<Hotel[]> {
+    return of(this.hotels); 
   }
-  getHotel(id:number):Hotel  |  undefined{
-    return this.hotels.find(h=>h.id===id);
+
+  getHotel(id: number): Observable<Hotel | undefined> {
+    return of(this.hotels.find(h => h.id === id)); 
   }
-  updateHotel(hotel:Hotel):void{
-    const index = this.hotels.findIndex(h => h.id===hotel.id);
-    if(index !== -1){
-      this.hotels[index]=hotel
+
+
+  updateHotel(hotel: Hotel): Observable<void> {
+    const index = this.hotels.findIndex(h => h.id === hotel.id);
+    if (index !== -1) {
+      this.hotels[index] = hotel;
     }
-
+    return of(undefined); 
   }
-  deleteHotel(id:number){
-    const index = this.hotels.findIndex(hotel => hotel.id === id);
-    if(index !== -1){
+
+  deleteHotel(id: number): Observable<void> {
+    const index = this.hotels.findIndex(h => h.id === id);
+    if (index !== -1) {
       this.hotels.splice(index, 1);
-
+    }
+    return of(undefined); 
   }
-}
-  private generateId(){
+
+  private generateId(): number {
     return this.hotels.length > 0 ? Math.max(...this.hotels.map(hotel => hotel.id)) + 1 : 1;
+  }
+  bookHotel(tour: Hotel): Observable<any> {
+    
+    console.log('Booking tour:', tour);
+    return of({}); 
   }
 }

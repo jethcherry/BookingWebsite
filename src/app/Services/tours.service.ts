@@ -137,8 +137,8 @@ export class ToursService {
   }
   
   bookTour(tour: Tour): Observable<any> {
-    // Add booking logic here
+    
     console.log('Booking tour:', tour);
-    return of({}); // Return an empty observable that completes immediately
+    return of({}); 
   }
 }

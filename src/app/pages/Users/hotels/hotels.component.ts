@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Hotel } from '../../../Models/Hotels';
 import { HotelsService } from '../../../Services/hotels.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hotels',
@@ -14,7 +15,7 @@ import { HotelsService } from '../../../Services/hotels.service';
 export class HotelsComponent implements OnInit {
   hotels:Hotel[]=[]
 
-  constructor(private hotelService:HotelsService){}
+  constructor(private hotelService:HotelsService,private router:Router){}
   ngOnInit(){
     this.loadHotels();
   }
@@ -44,11 +45,14 @@ export class HotelsComponent implements OnInit {
 
 
     }
-    bookNow(){
+   
+    bookNow(tour:Hotel){
 
-    }
-  
+      this.hotelService.bookHotel(tour).subscribe(()=>{
+        this.router.navigateByUrl('/bookings');
+      })
 
 
 
   }
+}
