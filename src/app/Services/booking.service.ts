@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Bookings } from '../Models/Booking';
+import { Booking } from '../Models/Booking';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingService {
-  private bookings: Bookings[] = [];
+  private bookings: Booking[] = [];
 
-  constructor() {}
+  constructor() { }
 
-
-  book(booking: Bookings): void {
-    booking.id = this.bookings.length + 1; 
+  book(booking: Booking): Observable<any> {
+    booking.id = this.bookings.length + 1;
     this.bookings.push(booking);
     console.log('Booking details:', booking);
     alert('Booking successful!');
+    return of({}); 
   }
 
-  getBookings(): Bookings[] {
+  getBookings(): Booking[] {
     return this.bookings;
   }
 

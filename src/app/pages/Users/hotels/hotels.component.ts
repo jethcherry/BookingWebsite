@@ -28,7 +28,7 @@ export class HotelsComponent implements OnInit {
         location: 'New City, New Country',
         price:'',
         description: 'This is a new hotel description.',
-        imageUrl: 'assets/images/new-hotel.jpg'
+        imageUrl: 'https://cdn.pixabay.com/photo/2019/07/30/00/55/castle-4371727_640.jpg'
     }
       this.hotelService.addHotels(newHotel);
       this.loadHotels(); 
@@ -42,6 +42,9 @@ export class HotelsComponent implements OnInit {
     this.hotelService.deleteHotel(id);
     this.loadHotels(); 
 
+
+    }
+    bookNow(){
 
     }
   

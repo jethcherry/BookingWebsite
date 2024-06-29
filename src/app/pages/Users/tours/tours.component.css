@@ -1,0 +1,62 @@
+.tour-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  gap: 20px;
+  padding: 50px;
+}
+
+.tour-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.tour-item p{
+  color: #eea51e;
+}
+
+.tour-item img {
+  width: 100%;
+  max-width: 100%;
+  height: 150px; 
+  object-fit: cover; 
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.tour-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.tour-item p {
+  margin-bottom: 8px;
+}
+
+.tour-item button {
+  align-self: center;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tour-item button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .tour-item {
+    padding: 10px; 
+  }
+
+  .tour-item img {
+    height: 120px; 
+  }
+}

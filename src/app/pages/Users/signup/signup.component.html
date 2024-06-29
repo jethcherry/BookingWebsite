@@ -1,24 +1,25 @@
-<h2>Register</h2>
-<form (ngSubmit)="onSubmit()">
-  <div>
+
+<form (ngSubmit)="onSubmit()" class="register-form">
+  <h2>Register</h2>
+  <div class="form-group">
     <label for="username">Username</label>
-    <input type="text" id="username" [(ngModel)]="username" name="username">
+    <input type="text" id="username" [(ngModel)]="username" name="username" class="form-control">
   </div>
-  <div>
+  <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" id="email" [(ngModel)]="email" name="email">
+    <input type="email" id="email" [(ngModel)]="email" name="email" class="form-control">
   </div>
-  <div>
+  <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" id="password" [(ngModel)]="password" name="password">
+    <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control">
   </div>
-  <div>
+  <div class="form-group">
     <label for="role">Role</label>
-    <select id="role" [(ngModel)]="role" name="role">
+    <select id="role" [(ngModel)]="role" name="role" class="form-control">
       <option value="user">User</option>
       <option value="admin">Admin</option>
     </select>
   </div>
-  <button type="submit">Register</button>
+  <button type="submit" class="btn btn-primary">Register</button>
 </form>
-<div *ngIf="errorMessage" style="color:red">{{ errorMessage }}</div>
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>

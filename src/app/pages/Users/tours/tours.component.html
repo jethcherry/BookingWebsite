@@ -3,13 +3,13 @@
     <div *ngFor="let tour of tours" class="tour-item">
       <img [src]="tour.imageUrl" alt="Tour Image">
       <h3>{{ tour.name }}</h3>
-      <p>{{ tour.destination }}</p>
+      <h3>{{ tour.destination }}</h3>
       <p>{{ tour.description }}</p>
       <p>{{ tour.price }}</p>
-      <button (click)="updateTour(tour)">Update Tour</button>
-      <button (click)="deleteTour(tour.id)">Delete Tour</button>
+      <button (click)="bookNow(tour)">Book Now</button>
+   
     </div>
   </div>
   
-  <button (click)="addTour()">Add New Tour</button>
+
   

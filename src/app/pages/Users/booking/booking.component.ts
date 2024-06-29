@@ -1,47 +1,49 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Bookings } from '../../../Models/Booking';
+import { Booking } from '../../../Models/Booking';
 import { BookingService } from '../../../Services/booking.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-booking',
-  standalone: true,
+  selector: 'app-booking-form',
+  standalone:true,
   imports: [CommonModule,FormsModule],
-  templateUrl: './booking.component.html',
-  styleUrl: './booking.component.css'
+  templateUrl: '../../Users/booking/booking.component.html',
+  styleUrls: ['../../Users/booking/booking.component.css']
 })
-export class BookingComponent {
-  booking: Bookings = {
-    id: 0, 
+export class BookingFormComponent  {
+
+
+  booking:Booking={
+    id:0,
     name: '',
     email: '',
-    checkin: '',
-    checkout: ''
-  };
-  bookings: Bookings[] = [];
+    phone: '',
+    HotelId: 0,
+    tourId: 0,
+    checkout:0,
+    checkin: 0
 
-  constructor(private bookingService: BookingService) {}
-
-  bookNow(): void {
-    this.bookingService.book(this.booking);
-    this.bookings = this.bookingService.getBookings(); // Update list of bookings
-    this.resetForm();
   }
 
-  cancelBooking(id: number): void {
-    this.bookingService.cancelBooking(id);
-    this.bookings = this.bookingService.getBookings(); // Update list of bookings
+  constructor(private bookingService:BookingService,private router:Router){}
+  submitBooking(): void {
+    this.bookingService.book(this.booking).subscribe(()=>{
+      this.router.navigateByUrl('/tours')
+
+    })
   }
-  private resetForm(): void {
-    this.booking = {
-      id: 0,
-      name: '',
-      email: '',
-      checkin: '',
-      checkout: ''
-    };
-  }
+
+  
+ 
+}
+
+
+
+
+  
+
  
 
-}
+

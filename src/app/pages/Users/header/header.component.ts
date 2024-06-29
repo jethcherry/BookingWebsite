@@ -16,4 +16,15 @@ export class HeaderComponent {
 
   constructor(public auth:AuthService){}
 
+  isMenuOpen:boolean =false
+  toggleMenu(){
+    this.isMenuOpen =!this.isMenuOpen
+
+  }
+
+  closeMenu(){
+    this.isMenuOpen = false
+
+  }
+
 }

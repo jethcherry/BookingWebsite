@@ -3,7 +3,7 @@ import { Tour } from '../../../Models/Tours';
 import { ToursService } from '../../../Services/tours.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tours',
@@ -16,7 +16,7 @@ export class ToursComponent {
 
   tours: Tour[] = [];
 
-  constructor(private tourService: ToursService) {}
+  constructor(private tourService: ToursService,private router:Router) {}
 
   ngOnInit(): void {
     this.loadTours();
@@ -48,5 +48,15 @@ export class ToursComponent {
     this.tourService.deleteTour(id);
     this.loadTours(); 
   }
+
+bookNow(tour:Tour){
+
+  this.tourService.bookTour(tour).subscribe(()=>{
+    this.router.navigateByUrl('/bookings');
+  })
+
+}
+  
+
 
 }

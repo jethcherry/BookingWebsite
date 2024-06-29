@@ -1,35 +1,61 @@
-<div class="booking-container">
-  <h2>Booking Details</h2>
-  <form (ngSubmit)="bookNow()">
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" [(ngModel)]="booking.name">
-    </div>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" [(ngModel)]="booking.email">
-    </div>
-    <div class="form-group">
-      <label for="checkin">Check-in Date:</label>
-      <input type="date" id="checkin" name="checkin" [(ngModel)]="booking.checkin">
-    </div>
-    <div class="form-group">
-      <label for="checkout">Check-out Date:</label>
-      <input type="date" id="checkout" name="checkout" [(ngModel)]="booking.checkout">
-    </div>
-    <button type="submit">Book Now</button>
-  </form>
-</div>
-
-<div *ngIf="bookings.length > 0" class="bookings-list">
-  <h2>Bookings</h2>
-  <ul>
-    <li *ngFor="let booking of bookings">
-      <p>Name: {{ booking.name }}</p>
-      <p>Email: {{ booking.email }}</p>
-      <p>Check-in: {{ booking.checkin }}</p>
-      <p>Check-out: {{ booking.checkout }}</p>
-      <button (click)="cancelBooking(booking.id)">Cancel Booking</button>
-    </li>
-  </ul>
-</div>
+<form (ngSubmit)="submitBooking()" #bookingForm="ngForm" class="booking-form">
+  <div class="form-group">
+    <label>
+      Name:
+      <input type="text" [(ngModel)]="booking.name" name="customerName" required>
+      <div class="error" *ngIf="bookingForm && bookingForm.controls['customerName'].invalid && (bookingForm.controls['customerName'].dirty || bookingForm.controls['customerName'].touched)">
+        <div *ngIf="bookingForm.controls['customerName'].errors?.['required']">
+           name is required.
+        </div>
+      </div>
+    </label>
+  </div>
+  <div class="form-group">
+    <label>
+      Email:
+      <input type="email" [(ngModel)]="booking.email" name="email" required email>
+      <div class="error" *ngIf="bookingForm && bookingForm.controls['email'].invalid && (bookingForm.controls['email'].dirty || bookingForm.controls['email'].touched)">
+        <div *ngIf="bookingForm.controls['email'].errors?.['required']">
+          Email is required.
+        </div>
+        <div *ngIf="bookingForm.controls['email'].errors?.['email']">
+          Invalid email address.
+        </div>
+      </div>
+    </label>
+  </div>
+  <div class="form-group">
+    <label>
+      Phone:
+      <input type="tel" [(ngModel)]="booking.phone" name="phone" required>
+      <div class="error" *ngIf="bookingForm && bookingForm.controls['phone'].invalid && (bookingForm.controls['phone'].dirty || bookingForm.controls['phone'].touched)">
+        <div *ngIf="bookingForm.controls['phone'].errors?.['required']">
+          Phone number is required.
+        </div>
+      </div>
+    </label>
+  </div>
+  <div class="form-group">
+    <label>
+      Check-in Date:
+      <input type="date" [(ngModel)]="booking.checkin" name="checkInDate" required>
+      <div class="error" *ngIf="bookingForm && bookingForm.controls['checkInDate'].invalid && (bookingForm.controls['checkInDate'].dirty || bookingForm.controls['checkInDate'].touched)">
+        <div *ngIf="bookingForm.controls['checkInDate'].errors?.['required']">
+          Check-in date is required.
+        </div>
+      </div>
+    </label>
+  </div>
+  <div class="form-group">
+    <label>
+      Check-out Date:
+      <input type="date" [(ngModel)]="booking.checkout" name="checkOutDate" required>
+      <div class="error" *ngIf="bookingForm && bookingForm.controls['checkOutDate'].invalid && (bookingForm.controls['checkOutDate'].dirty || bookingForm.controls['checkOutDate'].touched)">
+        <div *ngIf="bookingForm.controls['checkOutDate'].errors?.['required']">
+          Check-out date is required.
+        </div>
+      </div>
+    </label>
+  </div>
+  <button type="submit" [disabled]="!(bookingForm && bookingForm.form.valid)">Book Now</button>
+</form>
