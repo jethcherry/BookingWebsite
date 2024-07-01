@@ -1,1 +1,55 @@
-<p>booking works!</p>
+<div class="container">
+    <h2>Manage Hotels</h2>
+    <form [formGroup]="hotelForm" (ngSubmit)="onHotelSubmit()">
+      <div class="form-group">
+        <label for="hotelName">Hotel Name</label>
+        <input id="hotelName" class="form-control" formControlName="name" type="text">
+      </div>
+      <div class="form-group">
+        <label for="checkInDate">Check-in Date</label>
+        <input id="checkInDate" class="form-control" formControlName="checkin" type="date">
+      </div>
+      <div class="form-group">
+        <label for="checkOutDate">Check-out Date</label>
+        <input id="checkOutDate" class="form-control" formControlName="checkout" type="date">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" class="form-control" formControlName="email" type="email">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input id="phone" class="form-control" formControlName="phone" type="tel">
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="hotelForm.invalid">Add Hotel</button>
+    </form>
+  </div>
+
+  <div class="container">
+    <h2>Manage Tours</h2>
+    <form [formGroup]="tourForm" (ngSubmit)="onTourSubmit()">
+      <div class="form-group">
+        <label for="tourName">Tour Name</label>
+        <input id="tourName" class="form-control" formControlName="name" type="text">
+      </div>
+      <div class="form-group">
+        <label for="tourDate">Tour Date</label>
+        <input id="tourDate" class="form-control" formControlName="checkin" type="date">
+      </div>
+      <div class="form-group">
+        <label for="participants">Number of Participants</label>
+        <input id="participants" class="form-control" formControlName="checkout" type="number">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" class="form-control" formControlName="email" type="email">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input id="phone" class="form-control" formControlName="phone" type="tel">
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="tourForm.invalid">Add Tour</button>
+    </form>
+  </div>
+  
+  
