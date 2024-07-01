@@ -3,8 +3,8 @@
     <img src="data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAALMAAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAABwAAAAcAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQAMAAAAABNjb2xybmNseAACAAIABoAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAALttZGF0EgAKCRgRN7YIEBA0IDKjARgACiiihQDPnNMWzJ6U8rIrTuvOWjUPStkMAxpf/7kMV7E0bvjl7IQHh/EBQ0g7wymKv9V2PJeNcbvhE0eJHkqE1kIEd33IDnW6+iItEjX7lsyhPpsewg1c9BbWyY9qxbwknug9dta8UlUEg/aqdt7EItEOWmWwoGYkRnNq5BVMQEAxAj0ZKx497T0F92t92+Ivc1Gnl0OlC+PDcr5LxcQ1aDg=" alt="logo" class="logo">
     <ul class="nav-links">
       <li><a routerLink='home' >Home</a></li>
-      <li><a routerLink="hotels" *ngIf="auth.showStatus()">Hotels</a></li>
-      <li><a routerLink="tours" *ngIf="auth.showStatus()">Tours</a></li>
+      <li><a routerLink="hotels" *ngIf="!auth.showStatus()">Hotels</a></li>
+      <li><a routerLink="tours" *ngIf="!auth.showStatus()">Tours</a></li>
       <li><a routerLink="aboutus" *ngIf="!auth.showStatus()">About Us</a></li>
       <li><a routerLink="contactus" *ngIf="!auth.showStatus()">Contact Us</a></li>
       <li><a routerLink="faqs" *ngIf="!auth.showStatus()">FAQs</a></li>
@@ -20,8 +20,8 @@
   </nav>
   <ul class="mobile-nav-links" [ngClass]="{'open': isMenuOpen}">
     <li><a routerLink='' (click)="closeMenu()">Home</a></li>
-    <li><a routerLink="hotels" *ngIf="auth.showStatus()" (click)="closeMenu()">Hotels</a></li>
-    <li><a routerLink="tours" *ngIf="auth.showStatus()" (click)="closeMenu()">Tours</a></li>
+    <li><a routerLink="hotels" *ngIf="!auth.showStatus()" (click)="closeMenu()">Hotels</a></li>
+    <li><a routerLink="tours" *ngIf="!auth.showStatus()" (click)="closeMenu()">Tours</a></li>
     <li><a routerLink="aboutus" *ngIf="!auth.showStatus()" (click)="closeMenu()">About Us</a></li>
     <li><a routerLink="contactus" *ngIf="!auth.showStatus()" (click)="closeMenu()">Contact Us</a></li>
     <li><a routerLink="faqs" *ngIf="!auth.showStatus()" (click)="closeMenu()">FAQs</a></li>

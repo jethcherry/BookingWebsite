@@ -1,0 +1,90 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #130b0b;
+  }
+  
+  .container {
+    background: url('https://cdn.pixabay.com/photo/2016/04/15/11/43/hotel-1330834_640.jpg');
+    background-size: cover;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: rgb(53, 21, 23);
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background-color: white;
+    color: black;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: rgba(196, 46, 46, 0.5);
+  }
+  
+  .form-control textarea {
+    height: 100px;
+    resize: vertical;
+  }
+  
+  .btn-primary {
+    background-color: rgb(110, 55, 59);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    max-width: 200px; 
+    width: 100%; 
+    margin: 0 auto;
+  }
+  
+  
+  .btn-primary:hover {
+    background-color: darkgreen;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
+    }
+    
+    .form-control {
+      font-size: 12px;
+    }
+    
+    .btn-primary {
+      font-size: 14px;
+    }
+  }
+  

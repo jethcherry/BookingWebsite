@@ -1,2 +1,26 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-<app-hotels></app-hotels>
+<div class="main-container">
+    <div class="sidebar">
+      <button (click)="toggleComponent('users')">
+        <i class="fa fa-user"></i> Users
+      </button>
+      <button (click)="toggleComponent('hotels')">
+        <i class="fa fa-building"></i> Hotels
+      </button>
+      <button (click)="toggleComponent('tours')">
+        <i class="fa fa-globe"></i> Tours
+      </button>
+      <button (click)="toggleComponent('booking')">
+        <i class="fa fa-book"></i> Booking
+      </button>
+    </div>
+  
+    <div class="content-container">
+      <app-users *ngIf="selectedComponent === 'users'" class="component"></app-users>
+      <app-hotels *ngIf="selectedComponent === 'hotels'" class="component"></app-hotels>
+      <app-tours *ngIf="selectedComponent === 'tours'" class="component"></app-tours>
+      <app-booking *ngIf="selectedComponent === 'booking'" class="component"></app-booking>
+    </div>
+  </div>
+  

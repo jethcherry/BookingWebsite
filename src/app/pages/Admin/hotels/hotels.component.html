@@ -1,29 +1,28 @@
-<p>hotels works!</p>
-<div>
-    <h2>Manage Hotels</h2>
-    <form [formGroup]="hotelForm" (ngSubmit)="onSubmit()">
-      <div formArrayName="hotels">
-        <div formGroupName="0">
-          <label>ID:</label>
-          <input type="number" formControlName="id">
-          <br>
-          <label>Name:</label>
-          <input type="text" formControlName="name">
-          <br>
-          <label>Location:</label>
-          <input type="text" formControlName="location">
-          <br>
-          <label>Price:</label>
-          <input type="text" formControlName="price">
-          <br>
-          <label>Description:</label>
-          <textarea formControlName="description"></textarea>
-          <br>
-          <label>Image URL:</label>
-          <input type="text" formControlName="imageUrl">
-          <br>
-        </div>
+<div class="container">
+  <h2>Manage Hotels</h2>
+  <form [formGroup]="hotelForm" (ngSubmit)="onSubmit()" class="form">
+    <div formArrayName="hotels">
+      <div formGroupName="0" class="form-group">
+        <label>ID:</label>
+        <input type="number" formControlName="id" class="form-control">
+        <br>
+        <label>Name:</label>
+        <input type="text" formControlName="name" class="form-control">
+        <br>
+        <label>Location:</label>
+        <input type="text" formControlName="location" class="form-control">
+        <br>
+        <label>Price:</label>
+        <input type="text" formControlName="price" class="form-control">
+        <br>
+        <label>Description:</label>
+        <textarea formControlName="description" class="form-control"></textarea>
+        <br>
+        <label>Image :</label>
+        <input type="text" formControlName="imageUrl" class="form-control">
+        <br>
       </div>
-      <button type="submit">Add Hotel</button>
-    </form>
-  </div>
+    </div>
+    <button type="submit" class="btn-primary">Add Hotel</button>
+  </form>
+</div>
