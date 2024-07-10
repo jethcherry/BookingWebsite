@@ -1,83 +1,117 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../../../Services/auth.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthenticationService } from '../../../Services/authentication.service';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent {
-  username: string = '';
-  email: string = '';
-  password: string = '';
-  role: string = 'user';
-  errorMessage: string = '';
+export class SignupComponent implements OnInit {
+  form!: FormGroup;
+  errorMessage = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router) {}
 
-  private validatePassword(password: string): string {
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      Name: [null, Validators.required],
+      Email: [null, [Validators.required, Validators.email]],
+      Password: [null, [Validators.required, this.validatePassword]],
+     
+    });
+  }
+
+  private validatePassword(control: any): { [key: string]: any } | null {
+    const password = control.value;
     const minLength = 8;
     const hasUpperCase = /[A-Z]/.test(password);
     const hasLowerCase = /[a-z]/.test(password);
     const hasNumber = /[0-9]/.test(password);
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-    const hasRepeatingChars = /(.)\1\1/.test(password); 
+    const hasRepeatingChars = /(.)\1\1/.test(password);
 
     if (!password) {
-      return 'The input fields cannot be empty';
+      return { error: 'The input fields cannot be empty' };
     }
     if (password.length < minLength) {
-      return `Password must be at least ${minLength} characters long.`;
+      return { error: `Password must be at least ${minLength} characters long.` };
     }
     if (!hasUpperCase) {
-      return 'Password must contain at least one uppercase letter.';
+      return { error: 'Password must contain at least one uppercase letter.' };
     }
     if (!hasLowerCase) {
-      return 'Password must contain at least one lowercase letter.';
+      return { error: 'Password must contain at least one lowercase letter.' };
     }
     if (!hasNumber) {
-      return 'Password must contain at least one number.';
+      return { error: 'Password must contain at least one number.' };
     }
     if (!hasSpecialChar) {
-      return 'Password must contain at least one special character.';
+      return { error: 'Password must contain at least one special character.' };
     }
     if (hasRepeatingChars) {
-      return 'Password must not contain repeating characters in sequence.';
+      return { error: 'Password must not contain repeating characters in sequence.' };
     }
-    return '';
+    return null;
   }
 
-  public validateInputs(): boolean {
-    if (!this.username || !this.email || !this.password || !this.role) {
-      this.errorMessage = "All fields are required.";
-      return false;
-    }
-    const passwordError = this.validatePassword(this.password);
-    if (passwordError) {
-      this.errorMessage = passwordError;
-      return false;
-    }
-    this.errorMessage = '';
-    return true;
-  }
-
-  onSubmit() {
-    if (this.validateInputs()) {
-      this.authService.register(this.username, this.password, this.role, this.email).subscribe(result => {
-        if (result) {
-          alert('Registration successful');
-          this.router.navigate(['/login']);
-        } else {
-          this.errorMessage = 'Username or email already exists';
+onSignup() {
+    if (this.form.valid) {
+      console.log(this.form.value);
+      this.auth.registerUser(this.form.value).subscribe(
+        res => {
+          alert('Registration successful!');
+          this.router.navigate(['/login'])
+          console.log(res.message);
+          this.form.reset();
+        },
+        err => {
+          console.error(err);
+          alert('Registration failed. Please try again.');
         }
-      });
+      );
+      this.form.reset()
     } else {
-      alert(this.errorMessage);
+      alert('Please fix the following errors:\n\n' + this.getFormErrors());
+      this.form.markAllAsTouched();
     }
+  }
+
+  private getFormErrors() {
+    let errors = '';
+    Object.keys(this.form.controls).forEach(key => {
+      const controlErrors = this.form.get(key)?.errors;
+      if (controlErrors != null) {
+        Object.keys(controlErrors).forEach(keyError => {
+          errors += `- ${this.getErrorMessage(key, keyError)}\n`;
+        });
+      }
+    });
+    return errors;
+  }
+
+  private getErrorMessage(controlName: string, errorType: string) {
+    const errors: any = {
+      Name: {
+        required: 'Name is required.'
+      },
+      Email: {
+        required: 'Email is required.',
+        email: 'Please enter a valid email address.'
+      },
+      Password: {
+        required: 'Password is required.',
+        validatePassword: 'Please enter a valid password.'
+      }
+    };
+    return errors[controlName][errorType];
   }
 }
+
+
+
+  

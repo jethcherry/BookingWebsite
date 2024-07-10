@@ -1,51 +1,63 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../../../Services/auth.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import { AuthenticationService } from '../../../Services/authentication.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  username: string = '';
-  password: string = '';
-  errorMessage: string = '';
+form!:FormGroup
+error!:string
+message!:string
 
-  constructor(private authService: AuthService, private router: Router) { }
 
-  public validateInputs(): boolean {
-    if (!this.username || !this.password) {
-      this.errorMessage = "Both fields are required.";
-      return false;
-    }
-    this.errorMessage = '';
-    return true;
-  }
 
-  onSubmit() {
-    if (this.validateInputs()) {
-      this.authService.loginUser(this.username, this.password).subscribe(result => {
-        if (result) {
-          alert('Login successful');
-          if (result.role === 'admin') {
-            this.router.navigate(['/admin']);
-          } else {
-            this.router.navigate(['/home']);
-          }
-        } else {
-          this.errorMessage = 'Invalid username or password';
+  constructor(private authService: AuthenticationService,private fb:FormBuilder,private  router:Router) { }
+
+
+ ngOnInit(): void {
+     this.form=this.fb.group({
+      Email:this.fb.control(null,Validators.required),
+      Password:this.fb.control(null,Validators.required)
+
+     })
+ }
+
+ onSubmit(){
+    this.authService.loginUser(this.form.value).subscribe(
+      res=>{
+
+        localStorage.setItem('role','admin')
+        localStorage.setItem('token',res.token)
+        this.message=res.message
+        if(res.token=== 'admin'){
+          this.router.navigate(['/admin'])
+
         }
-      });
-    } else {
-      alert(this.errorMessage);
-    }
-  }
+        else{
+          this.router.navigate(['/home'])
+        }
+      
+      },
+      err=>{
+        console.log(err)
+        this.error=err.message
+      }
+
+    )
+
+
+
+ }
+ 
+  
 
  
 

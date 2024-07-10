@@ -1,62 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HotelsService } from '../../../Services/hotels.service';
+import { CommonModule } from '@angular/common';
 import { Hotel } from '../../../Models/Hotels';
 
 @Component({
   selector: 'app-hotels',
   standalone: true,
-  imports: [FormsModule,ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './hotels.component.html',
-  styleUrl: './hotels.component.css'
+  styleUrls: ['./hotels.component.css'] // Corrected to styleUrls and made it an array
 })
-export class HotelsComponent  implements OnInit {
+export class HotelsComponent implements OnInit {
 
-  hotelForm: FormGroup;
+  Form!: FormGroup;
   hotels: Hotel[] = [];
 
-  constructor(private formBuilder: FormBuilder, private hotelsService: HotelsService) {
-    this.hotelForm = this.formBuilder.group({
-      hotels: this.formBuilder.array([
-        this.createHotelFormGroup()
-      ])
-    });
-  }
+  constructor(private fb: FormBuilder, private hotelService: HotelsService) { }
 
   ngOnInit(): void {
-  }
+    this.Form = this.fb.group({
+      hotelId: this.fb.control(null, Validators.required),
+      HotelName: this.fb.control(null, Validators.required),
+      HotelDescription: this.fb.control(null, Validators.required),
+      HotelLocation: this.fb.control(null, Validators.required),
+      HotelRating: this.fb.control(null, Validators.required),
+      price: this.fb.control(null, Validators.required)
+    });
 
-  createHotelFormGroup(): FormGroup {
-    return this.formBuilder.group({
-      id: ['', Validators.required],
-      name: ['', Validators.required],
-      location: ['', Validators.required],
-      price: ['', Validators.required],
-      description: [''],
-      imageUrl: ['']
+    this.hotelService.getHotels().subscribe(res => {
+      this.hotels = res;
     });
   }
 
-  get hotelsFormArray(): FormArray {
-    return this.hotelForm.get('hotels') as FormArray;
-  }
-
-  onSubmit(): void {
-    if (this.hotelForm.valid) {
-      const newHotel: Hotel = this.hotelsFormArray.at(0).value;
-      this.hotelsService.addHotel(newHotel).subscribe(
-        () => {
-          alert('Hotel added successfully');
-          this.hotelForm.setControl('hotels', this.formBuilder.array([this.createHotelFormGroup()]));
-        },
-        error => {
-          console.error('Error adding hotel:', error);
-          alert('Failed to add hotel. Please try again.');
-        }
-      );
-    } else {
-      alert('Please fill in all required fields.');
+  onSubmit() {
+    if (this.Form.valid) {
+      const hotelData: Hotel = this.Form.value;
+      this.hotelService.postHotel(hotelData).subscribe(res => {
+        console.log(res);
+      });
     }
   }
-
 }

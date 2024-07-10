@@ -26,5 +26,8 @@ export class HeaderComponent {
     this.isMenuOpen = false
 
   }
+  onLogout(){
+    this.auth.logout()
+  }
 
 }

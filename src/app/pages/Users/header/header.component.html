@@ -2,16 +2,18 @@
   <nav>
     <img src="data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAALMAAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAABwAAAAcAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQAMAAAAABNjb2xybmNseAACAAIABoAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAALttZGF0EgAKCRgRN7YIEBA0IDKjARgACiiihQDPnNMWzJ6U8rIrTuvOWjUPStkMAxpf/7kMV7E0bvjl7IQHh/EBQ0g7wymKv9V2PJeNcbvhE0eJHkqE1kIEd33IDnW6+iItEjX7lsyhPpsewg1c9BbWyY9qxbwknug9dta8UlUEg/aqdt7EItEOWmWwoGYkRnNq5BVMQEAxAj0ZKx497T0F92t92+Ivc1Gnl0OlC+PDcr5LxcQ1aDg=" alt="logo" class="logo">
     <ul class="nav-links">
-      <li><a routerLink='home' >Home</a></li>
-      <li><a routerLink="hotels" *ngIf="!auth.showStatus()">Hotels</a></li>
-      <li><a routerLink="tours" *ngIf="!auth.showStatus()">Tours</a></li>
-      <li><a routerLink="aboutus" *ngIf="!auth.showStatus()">About Us</a></li>
-      <li><a routerLink="contactus" *ngIf="!auth.showStatus()">Contact Us</a></li>
-      <li><a routerLink="faqs" *ngIf="!auth.showStatus()">FAQs</a></li>
+      <li><a routerLink='home' routerLinkActive="active">Home</a></li>
+      <li><a routerLink="hotels" *ngIf="auth.showStatus()">Hotels</a></li>
+      <li><a routerLink="tours" *ngIf="auth.showStatus()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Tours</a></li>
+      <li><a routerLink="aboutus" *ngIf="auth.showStatus()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">About Us</a></li>
+      <li><a routerLink="contactus" *ngIf="auth.showStatus()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Contact Us</a></li>
+      <li><a routerLink="faqs" *ngIf="auth.showStatus()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">FAQs</a></li>
     </ul>
-    <a routerLink='login' class="register-btn">Login</a>
-    <a routerLink="signup" class="login-btn">Register Now</a>
-    <a routerLink="auth.logout()" *ngIf="auth.showStatus()" class="logout-btn">Log Out</a>
+    <ul class="auth-links">
+      <li><a routerLink='login' class="register-btn" routerLinkActive="active" *ngIf="!auth.showStatus()" [routerLinkActiveOptions]="{exact:true}">Login</a></li>
+      <li><a routerLink="signup" class="login-btn" routerLinkActive="active" *ngIf="!auth.showStatus()" [routerLinkActiveOptions]="{exact:true}">Register Now</a></li>
+      <li><a routerLink="auth.logout()" *ngIf="auth.showStatus()" (click)="onLogout()" class="logout-btn">Log Out</a></li>
+    </ul>
     <div class="hamburger-menu" (click)="toggleMenu()">
       <div class="line"></div>
       <div class="line"></div>
@@ -19,11 +21,14 @@
     </div>
   </nav>
   <ul class="mobile-nav-links" [ngClass]="{'open': isMenuOpen}">
-    <li><a routerLink='' (click)="closeMenu()">Home</a></li>
-    <li><a routerLink="hotels" *ngIf="!auth.showStatus()" (click)="closeMenu()">Hotels</a></li>
-    <li><a routerLink="tours" *ngIf="!auth.showStatus()" (click)="closeMenu()">Tours</a></li>
-    <li><a routerLink="aboutus" *ngIf="!auth.showStatus()" (click)="closeMenu()">About Us</a></li>
-    <li><a routerLink="contactus" *ngIf="!auth.showStatus()" (click)="closeMenu()">Contact Us</a></li>
-    <li><a routerLink="faqs" *ngIf="!auth.showStatus()" (click)="closeMenu()">FAQs</a></li>
+    <li><a routerLink='home' (click)="closeMenu()">Home</a></li>
+    <li><a routerLink="hotels" *ngIf="auth.showStatus()" (click)="closeMenu()">Hotels</a></li>
+    <li><a routerLink="tours" *ngIf="auth.showStatus()" (click)="closeMenu()">Tours</a></li>
+    <li><a routerLink="aboutus" *ngIf="auth.showStatus()" (click)="closeMenu()">About Us</a></li>
+    <li><a routerLink="contactus" *ngIf="auth.showStatus()" (click)="closeMenu()">Contact Us</a></li>
+    <li><a routerLink="faqs" *ngIf="auth.showStatus()" (click)="closeMenu()">FAQs</a></li>
+    <li><a routerLink='login' class="register-btn" routerLinkActive="active" *ngIf="!auth.showStatus()" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">Login</a></li>
+    <li><a routerLink="signup" class="login-btn" routerLinkActive="active" *ngIf="!auth.showStatus()" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">Register Now</a></li>
+    <li><a routerLink="auth.logout()" *ngIf="auth.showStatus()" (click)="onLogout()" class="logout-btn" (click)="closeMenu()">Log Out</a></li>
   </ul>
 </div>

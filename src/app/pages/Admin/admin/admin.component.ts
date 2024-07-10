@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
-  selectedComponent: string = 'hotels'; 
+  selectedComponent: string = 'users'; 
 
   toggleComponent(component: string) {
     this.selectedComponent = component;

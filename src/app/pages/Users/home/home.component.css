@@ -99,14 +99,111 @@
   text-align: center;
   color: #fff;
 }
+.trending{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  grid-gap: 30px;
+  margin-bottom: 30px;
+}
 
+.trending div img
+{
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+
+}
+.trending h3
+{
+  font-weight: 600px;
+  margin-top: 10px;
+}
+.cta{
+  margin: 80px 0;
+  background-image: linear-gradient(to right,#3f2321,transparent),url(https://cf2.bstatic.com/xdata/images/hotel/square240/501173323.webp?k=43f82141d0a914e4d6d276105fe298b53b3c8cb7b91fd46114ed8b77ad32db63&o= );
+  background-size: cover;
+  border-radius: 10px;
+  padding: 5%;
+  color: #fff;
+}
+.cta h3{
+  font-size: 4vw;
+  line-height: 5.3vw;
+  font-weight: 500;
+}
+.cta p{
+  font-size: 18px;
+  margin: 10px 0;
+}
+.cta-btn{
+  background: #ff5361;
+  color: white;
+  text-decoration: none;
+  padding: 12px 30px ;
+  border-radius: 8px;
+  margin-top: 20px;
+  display: inline-block;
+}
+.stories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 30px;
+  margin-bottom: 30px;
+}
+
+.stories div {
+  position: relative;
+  text-align: center;
+}
+
+.stories div img {
+  width: 100%; 
+  height: auto; 
+  border-radius: 10px;
+}
+
+.stories p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5); 
+  padding: 10px; 
+  border-radius: 5px; 
+  width: 80%;
+  text-align: center;
+}
+.start-btn{
+  text-decoration: none;
+  background-color: #ff5361;
+  color: #fff;
+  width: 80%;
+  border-radius: 20px;
+  max-width: 350px;
+  display:block;
+  text-align: center;
+  margin:  60px auto;
+  margin: 60px auto;
+  padding: 15px;
+}
+.about-boooking{
+  text-align: center;
+  margin: 80px 0;
+  color: #333;
+  font-size: 17px;
+}
+.about-boooking h2{
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
 .price {
   font-weight: bold;
   color: #333;
   margin-top: 10px;
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
   .container h1 {
     font-size: 6vw;

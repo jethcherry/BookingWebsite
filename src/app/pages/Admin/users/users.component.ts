@@ -16,30 +16,8 @@ export class UsersComponent {
 
   constructor(private formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {
-    this.userForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      role: ['admin', Validators.required],
-      email: ['', Validators.email]
-    });
-  }
 
-  onSubmit() {
-    if (this.userForm.valid) {
-      const newUser: User = {
-        username: this.userForm.value.username,
-        role: this.userForm.value.role,
-        email: this.userForm.value.email
-      };
-      
-      console.log(newUser);
-   
-      this.userForm.reset();
-    } else {
-     
-      this.userForm.markAllAsTouched();
-    }
   
 
-}
+
 }

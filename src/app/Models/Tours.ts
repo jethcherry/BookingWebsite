@@ -1,9 +1,10 @@
-export interface Tour {
-    id: number;
-    name: string;
-    destination: string;
-    description: string;
-    imageUrl: string;
-    price: number; 
-  }
-  
+export interface Tour
+{
+  TourId: string;
+  Name: string;
+  Description?: string;
+  Price: number;
+  Duration: number;
+  Location: string;
+  isDeleted: boolean;
+}

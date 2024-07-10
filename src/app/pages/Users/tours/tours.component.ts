@@ -19,43 +19,18 @@ export class ToursComponent {
   constructor(private tourService: ToursService,private router:Router) {}
 
   ngOnInit(): void {
-    this.loadTours();
+
+    this.tourService.getTours().subscribe(tours=>{
+      console.log(tours)
+
+    })
+    
   }
 
-  private loadTours(): void {
-    this.tours = this.tourService.getTours();
+  bookNow(tour:Tour){
+
   }
 
-  addTour(): void {
-    const newTour: Tour = {
-      id: 0, 
-      name: 'New Tour',
-      destination: 'New Destination',
-      description: 'This is a new tour description.',
-      imageUrl: 'assets/images/new-tour.jpg',
-      price: 1200 
-    };
-    this.tourService.addTour(newTour);
-    this.loadTours();
-  }
-
-  updateTour(tour: Tour): void {
-    this.tourService.updateTour(tour);
-    this.loadTours(); 
-  }
-
-  deleteTour(id: number): void {
-    this.tourService.deleteTour(id);
-    this.loadTours(); 
-  }
-
-bookNow(tour:Tour){
-
-  this.tourService.bookTour(tour).subscribe(()=>{
-    this.router.navigateByUrl('/bookings');
-  })
-
-}
   
 
 

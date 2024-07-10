@@ -1,11 +1,9 @@
 export interface Booking {
-  id: number;
-  HotelId?:number
-  tourId?: number;
-  name: string;
-  email: string;
-  phone: string;
-  checkout:number
-  checkin: number;
-
+  BookingId: string;
+  BookingDate: Date;
+  TotalAmount: number;
+  IsCancelled: boolean;
+  TourId: string;
+  HotelId: string;
+  UserId: string;
 }

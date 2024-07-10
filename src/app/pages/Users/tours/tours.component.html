@@ -1,11 +1,10 @@
 <div class="tour-list">
     <h2>Tours</h2>
     <div *ngFor="let tour of tours" class="tour-item">
-      <img [src]="tour.imageUrl" alt="Tour Image">
-      <h3>{{ tour.name }}</h3>
-      <h3>{{ tour.destination }}</h3>
-      <p>{{ tour.description }}</p>
-      <p>{{ tour.price | currency:'USD'}}</p>
+      <h3>{{ tour.Name }}</h3>
+      <h3>{{ tour.Description }}</h3>
+      <p>{{ tour.Price  | currency:'USD' }}</p>
+      <p>{{ tour.Location | currency:'USD'}}</p>
       <button (click)="bookNow(tour)">Book Now</button>
    
     </div>

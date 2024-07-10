@@ -1,33 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Booking } from '../Models/Booking';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Tour } from '../Models/Tours';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingService {
-  private bookings: Booking[] = [];
+  
+constructor(private http:HttpClient){}
+private readonly BASE_URL = 'http://localhost:5500/create/bookings'
+getBookings():Observable<Booking[]>{
+  return this.http.get<Booking[]>(this.BASE_URL)
 
-  constructor() { }
+}
 
-  book(booking: Booking): Observable<any> {
-    booking.id = this.bookings.length + 1;
-    this.bookings.push(booking);
-    console.log('Booking details:', booking);
-    alert('Booking successful!');
-    return of({}); 
-  }
+postBooking(hotel: Booking): Observable<{ message: string }> {
+  return this.http.post<{ message: string }>(this.BASE_URL, hotel);
+}
 
-  getBookings(): Booking[] {
-    return this.bookings;
-  }
+updateBooking(hotel: Booking): Observable<{ message: string }> {
+  return this.http.post<{ message: string }>(this.BASE_URL, hotel);
+}
 
-  cancelBooking(id: number): void {
-    const index = this.bookings.findIndex(booking => booking.id === id);
-    if (index !== -1) {
-      this.bookings.splice(index, 1);
-      console.log('Booking with id', id, 'cancelled.');
-      alert('Booking cancelled.');
-    }
-  }
+  
+  
 }

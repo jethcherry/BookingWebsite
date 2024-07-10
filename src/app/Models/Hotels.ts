@@ -1,9 +1,11 @@
+
+
 export interface Hotel {
-    id: number;
-    name: string;
-    location: string;
-    price:string
-    description: string;
-    imageUrl: string;
-  }
-  
+  hotelId: string;
+  HotelName: string;
+  HotelDescription: string;
+  HotelLocation: string;
+  HotelRating: number;
+  Price: number;
+}
+

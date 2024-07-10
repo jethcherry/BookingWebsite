@@ -1,43 +1,42 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { User } from '../Models/register';
-
-
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private users: User[] = [
-    { username: 'admin', password: 'Admin@123', role: 'admin' },
-    { username: 'user', password: 'User@123', role: 'user' }
-  ];
+  private isLoggedIn = false;
 
-  constructor() { }
+  constructor() {}
 
-  loginUser(username: string, password: string): Observable<{ role: string } | null> {
-    const user = this.users.find(u => u.username === username && u.password === password);
-    return of(user ? { role: user.role } : null);
-  }
-
-  register(username: string, password: string, role: string, email: string): Observable<boolean> {
-    if (this.users.some(u => u.username === username || u.email === email)) {
-      return of(false); 
-    }
-    this.users.push({ username, password, role, email });
-    return of(true);
-  }
-   private isLoggedIn = false
-
-  login(){
-    this.isLoggedIn = true; 
-  }
   logout(){
-    this.isLoggedIn =false
+    localStorage.clear()
+  }
+  getRole():string | null{
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      const user = JSON.parse(userString);
+      return user ? user.role : null;
+    }
+    return null;
+
+  }
+  showStatus():boolean{
+    const token =localStorage.getItem('token') as string
+    if(token){
+      this.isLoggedIn=true
+      return true
+     }
+  
+     this.isLoggedIn=false
+     return false
+    }
+    isAdmin(){
+      return this.getRole()==='admin'
+    }
+
   }
 
-  showStatus(){
-    return this.isLoggedIn
 
-  }
-}
+
+  

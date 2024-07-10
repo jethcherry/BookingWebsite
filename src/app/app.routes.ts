@@ -9,6 +9,7 @@ import { AboutusComponent } from './pages/Users/aboutus/aboutus.component';
 import { FaqsComponent } from './pages/Users/faqs/faqs.component';
 import { BookingFormComponent } from './pages/Users/booking/booking.component';
 import { AdminComponent } from './pages/Admin/admin/admin.component';
+import { adminGuard } from './Guards/admin-guards.guard';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent},
@@ -20,6 +21,7 @@ export const routes: Routes = [
     {path:'aboutus',component:AboutusComponent},
     {path:'faqs',component:FaqsComponent},
     {path:'bookings',component:BookingFormComponent},
-    {path:'admin',component:AdminComponent}
+    {path:'admin',component:AdminComponent,canActivate: [adminGuard]},
+
    
 ];

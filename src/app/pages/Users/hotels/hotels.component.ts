@@ -27,36 +27,36 @@ export class HotelsComponent implements OnInit {
     });
   }
 
-  addHotel() {
-    const newHotel: Hotel = {
-      id: 0,
-      name: 'New Hotel',
-      location: 'New City, New Country',
-      price: '',
-      description: 'This is a new hotel description.',
-      imageUrl: 'https://cdn.pixabay.com/photo/2019/07/30/00/55/castle-4371727_640.jpg'
-    };
+  // addHotel() {
+  //   const newHotel: Hotel = {
+  //     hotelId: 0,
+  //     name: 'New Hotel',
+  //     location: 'New City, New Country',
+  //     price: '',
+  //     description: 'This is a new hotel description.',
+  //     imageUrl: 'https://cdn.pixabay.com/photo/2019/07/30/00/55/castle-4371727_640.jpg'
+  //   };
 
-    this.hotelService.addHotel(newHotel).subscribe(() => {
-      this.loadHotels();
-    });
+    // this.hotelService.addHotel(newHotel).subscribe(() => {
+    //   this.loadHotels();
+    // });
   }
 
-  updateHotel(hotel: Hotel): void {
-    this.hotelService.updateHotel(hotel).subscribe(() => {
-      this.loadHotels();
-    });
-  }
+  // updateHotel(hotel: Hotel): void {
+  //   this.hotelService.updateHotel(hotel).subscribe(() => {
+  //     this.loadHotels();
+  //   });
+  // }
 
-  deleteHotel(id: number): void {
-    this.hotelService.deleteHotel(id).subscribe(() => {
-      this.loadHotels();
-    });
-  }
+//   deleteHotel(id: number): void {
+//     // this.hotelService.deleteHotel(id).subscribe(() => {
+//     //   this.loadHotels();
+//     // });
+//   }
 
-  bookNow(tour: Hotel) {
-    this.hotelService.bookHotel(tour).subscribe(() => {
-      this.router.navigateByUrl('/bookings');
-    });
-  }
-}
+//   bookNow(tour: Hotel) {
+//     // this.hotelService.bookHotel(tour).subscribe(() => {
+//     //   this.router.navigateByUrl('/bookings');
+//     // });
+//   }
+// }

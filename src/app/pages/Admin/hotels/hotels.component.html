@@ -1,28 +1,43 @@
 <div class="container">
   <h2>Manage Hotels</h2>
-  <form [formGroup]="hotelForm" (ngSubmit)="onSubmit()" class="form">
+  <form [formGroup]="Form" (ngSubmit)="onSubmit()" class="form">
     <div formArrayName="hotels">
       <div formGroupName="0" class="form-group">
         <label>ID:</label>
-        <input type="number" formControlName="id" class="form-control">
+        <input type="text" formControlName="hotelId" class="form-control">
         <br>
         <label>Name:</label>
-        <input type="text" formControlName="name" class="form-control">
+        <input type="text" formControlName="HotelName" class="form-control">
         <br>
-        <label>Location:</label>
-        <input type="text" formControlName="location" class="form-control">
+        <label>Description:</label>
+        <input type="text" formControlName="HotelDescription" class="form-control">
+        <br>
+        <label>Location::</label>
+        <textarea formControlName="HotelLocation" class="form-control"></textarea>
+        <br>
+        <br>
+        <label>Rating:</label>
+        <input type="text" formControlName="HotelRating" class="form-control">
         <br>
         <label>Price:</label>
         <input type="text" formControlName="price" class="form-control">
         <br>
-        <label>Description:</label>
-        <textarea formControlName="description" class="form-control"></textarea>
-        <br>
-        <label>Image :</label>
-        <input type="text" formControlName="imageUrl" class="form-control">
-        <br>
+       
+      
       </div>
     </div>
     <button type="submit" class="btn-primary">Add Hotel</button>
+    <div class="form-group" *ngIf="hotels" class="hotels">
+    <div *ngFor="let hotel of hotels"> 
+      <h1>{{hotel.HotelName}}</h1>
+      <h1>{{hotel.HotelDescription}}</h1>
+      <h1>{{hotel.HotelLocation}}</h1>
+      <h1>{{hotel.HotelRating}}</h1>
+
+      <button>Update</button>
+    </div>
+
+    </div>
+    
   </form>
 </div>

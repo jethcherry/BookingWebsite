@@ -1,6 +1,22 @@
 export interface User {
-    username: string;
-    password?: string;
-    role: string;
-    email?: string; 
+    Name: string;
+    password: string;
+    Email: string; 
   }
+  export interface RegisterResponse {
+    message:string
+  }
+
+  export interface LoginReq{
+    Email: string
+    Password:string
+  }
+  export interface LoginResponse{
+    message:string
+    token:string
+    isSuccess:boolean
+    role: number
+
+  }
+  
+  
